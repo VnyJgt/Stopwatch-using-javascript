@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+</head>
+<style>
+    *,
+    *::before,
+    *::after{
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        background: rgb(240, 192, 104);
+        position: relative;
+    }
+    .wrapper{
+        width: 400px;
+        height: 300px;
+        /* margin: 40px auto; */
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,50%);
+    }
+    h1{
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    h2{
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    p{
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    button{
+        padding: 15px 30px;
+        background: inherit;
+        color: white;
+        border: 2px solid orange;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+</style>
+<body>
+    <div class="wrapper">
+        <h1>Stopwatch</h1>
+        <h2>Vanilla JavaScript Stopwatch</h2>
+        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <button id="button-start">Start</button>
+        <button id="button-stop">Stop</button>
+        <button id="button-reset">Reset</button>
+        </div> 
+    </div>    
+</body>
+<script>
+    window.onload = function () {
+        
+        var seconds = 00;
+        var tens = 00;
+        var appendTens = document.getElementById("tens")
+        var appendSeconds = document.getElementById("seconds")
+        var buttonStart = document.getElementById('button-start');
+        var buttonStop = document.getElementById('button-stop');
+        var buttonReset = document.getElementById('button-reset');
+        var Interval ;
+        
+
+
+        buttonStart.onclick = function(){
+
+            clearInterval(Interval);
+            Interval = setInterval(startTime , 10);
+        }
+
+        buttonStop.onclick = function(){
+            clearInterval(Interval);
+            console.log(Interval);
+        }
+
+        buttonReset.onclick = function(){
+            clearInterval(Interval);
+            tens = "00";
+            seconds = "00";
+            appendTens.innerHTML = tens;
+            appendSeconds.innerHTML = seconds;
+        }
+
+        function startTime () {
+            tens++;
+
+            if(tens <= 9){
+                appendTens.innerHTML = "0" + tens;
+            }
+
+            if(tens >9){
+                appendTens.innerHTML = tens;
+            }
+
+            if(tens > 99){
+                console.log(seconds);
+                seconds++;
+                appendSeconds.innerHTML = "0" + seconds;
+                tens = 0;
+                appendTens.innerHTML = "0" + 0;
+            }
+
+            if(seconds > 9){
+                appendSeconds.innerHTML = seconds;
+            }
+        }
+
+
+
+    }
+</script>
+</html>
